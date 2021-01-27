@@ -6,7 +6,7 @@
   <link href="https://mospher.github.io/atom.xml" rel="self"/>
   
   <link href="https://mospher.github.io/"/>
-  <updated>2021-01-04T12:43:01.058Z</updated>
+  <updated>2021-01-05T12:07:24.600Z</updated>
   <id>https://mospher.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>january-1-5</title>
+    <link href="https://mospher.github.io/2021/01/05/january-1-5/"/>
+    <id>https://mospher.github.io/2021/01/05/january-1-5/</id>
+    <published>2021-01-05T12:07:24.000Z</published>
+    <updated>2021-01-05T12:07:24.600Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="https://mospher.github.io/2021/01/04/my-new-post/"/>
+    <id>https://mospher.github.io/2021/01/04/my-new-post/</id>
+    <published>2021-01-04T13:00:55.901Z</published>
+    <updated>2021-01-27T09:42:23.224Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="基于区块链的防护物资捐赠监管系统-一-：项目简介"><a href="#基于区块链的防护物资捐赠监管系统-一-：项目简介" class="headerlink" title="基于区块链的防护物资捐赠监管系统(一)：项目简介"></a>基于区块链的防护物资捐赠监管系统(一)：项目简介</h1><p><font color=#999AAA >第1章 对研究背景及内容进行介绍<br>第2章 智能合约、密码学知识、共识机制等相关技术<br>第3章 系统的整体设计<br>第4章 系统功能的具体实现<br>第5章 系统的实验测试</p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><p>@<a href="%E7%9B%AE%E5%BD%95">TOC</a></p></font><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><font color=#999AAA >    着互联网的发展，慈善与网络的结合为慈善事业的发展提供了一条崭新的道路，伴随着参与慈善方式更加便利发生的，是网络募捐监管的滞后，本项目基于区块链技术设计实现了一种去中心化的防护物资流通监管平台，还望各位大佬指正</font></p><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1"><h1 id="一、项目环境"><a href="#一、项目环境" class="headerlink" title="一、项目环境"></a>一、项目环境</h1><p>使用工具：IDEA2019.3.3 ，Android Studio<br>推荐工具：Notepad++，Sublime <font color=#999AAA >  轻量级编辑器阅读代码很方便   </font><br>语言：Java</p><h1 id="二、相关知识"><a href="#二、相关知识" class="headerlink" title="二、相关知识"></a>二、相关知识</h1><h2 id="1-区块链架构"><a href="#1-区块链架构" class="headerlink" title="1.区块链架构"></a>1.区块链架构</h2><p><img src="https://img-blog.csdnimg.cn/20210106095507644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h2 id="2-智能合约模型"><a href="#2-智能合约模型" class="headerlink" title="2.智能合约模型"></a>2.智能合约模型</h2><p>![在这里插入图片描述](<a href="https://img-blog.csdnimg.cn/2021010609530081.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_20,color_FFFFFF,t_70">https://img-blog.csdnimg.cn/2021010609530081.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_20,color_FFFFFF,t_70</a>, =450x250)</p><h2 id="3-相关密码学知识"><a href="#3-相关密码学知识" class="headerlink" title="3.相关密码学知识"></a>3.相关密码学知识</h2><h3 id="3-1-哈希函数"><a href="#3-1-哈希函数" class="headerlink" title="3.1 哈希函数"></a>3.1 哈希函数</h3><p>密码学的基本工具，Hash函数，它通过散列算法能够将任意长的一段数据通过映射，调整为固定长度的数据摘要并输出。通过压缩的形式，更高效利用存储空间。并且Hash函数还具有单向算法的特性，1bit的数据不同都会影响最终的Hash值，因此常用作完整性校验。目前常用的Hash函数主要有6种，MD5、SHA-A、SHA-2、SHA-3、Whirlpool、SHA-3、SM3。</p><h3 id="3-2-Merkle-Tree"><a href="#3-2-Merkle-Tree" class="headerlink" title="3.2 Merkle Tree"></a>3.2 Merkle Tree</h3><p>梅克尔树又称哈希树，Merkle Tree包含在区块链的每一个区块。树的每一个叶子节点如图2.3所示，均为对应数据块计算所得的哈希值，相邻的两片叶子节点将其中包含的字符串进行串联，并参与一次哈希计算，从而成为上层节点的内容，以此类推并最终得到顶层哈希值。这为区块链技术中区块数据存储校验提供了一种简单可靠的高效途径。</p><p><img src="https://img-blog.csdnimg.cn/20210106100227194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p><h3 id="3-3-DH密钥交换算法"><a href="#3-3-DH密钥交换算法" class="headerlink" title="3.3 DH密钥交换算法"></a>3.3 DH密钥交换算法</h3><p>Diffie-Hellman算法，于1976年由Diffie和Hellman共同发明，算法目的在于消息通信的收发双方通过可公开信息的交换，在保证安全传输的前提下，交换对称密钥生成可共享的加密数据。算法的核心在于避免双方私钥进入网络传输流程，以消息传递模型为例，密钥交换算法模型如图所示，本文利用AES+RSA实现DH密钥交互算法，Alice作为信息发送者，Bob作为信息接受者。<br>首先，Alice构建密钥对，保留私钥并将公钥信息公布给Bob，将私钥信息保留；双方约定数据加密算法，Bob通过Alice公钥构建密钥对，将公钥信息公布给Alice，将私钥信息保留。<br>Alice使用自己保留的私钥以及Bob公钥，双方约定数据加密算法并构建本地密钥，然后通过本地密钥加密数据，Alice发送给Bob加密后的数据；Bob使用私钥及Alice公开的公钥、双方约定的数据加密算法构建本地密钥，并最后通过本地密钥对数据解密。<br>Bob使用自己保留的私钥及Alice公钥、双方约定的数据加密算法构建本地密钥，然后通过本地密钥加密数据，将加密后的数据发送给Alice ；Alice使用其保留的私钥、Bob的公钥、以及双方约定的数据加密算法构建本地密钥，然后通过本地密钥对数据解密。<br><img src="https://img-blog.csdnimg.cn/20210106100518650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p><h3 id="3-4-椭圆曲线数字签名"><a href="#3-4-椭圆曲线数字签名" class="headerlink" title="3.4 椭圆曲线数字签名"></a>3.4 椭圆曲线数字签名</h3><p>数字签名基于非对称加密，主要用于证实数字内容具有完整性，同时可以保证确认来源，本文使用了椭圆曲线数字签名算法用于认证区块信息所有权。<br>用户的密钥对：(d,Q); (d 为私钥，Q 为公钥)<br>待签名的信息：M<br>签名：Signature(M) = ( r,s)<br>签名过程：<br>(1)根据 ECC 算法随机生成一个密钥对(k,R),R=(xR,yR)<br>(2)令 r= xR mod n，如果r = 0，则返回步骤 1；<br>(3)计算 H = Hash(M)；<br>(4)按照数据类型转换规则，将H转化为一个 big endian 的整数 e；<br>(5)s =k^(-1)  (e + rd) mod n，若 s = 0，则返回步骤 1；<br>(6)输出的 S =(r,s)即为签名。<br>验证过程：<br>(1)计算 H = Hash(M)；<br>(2)按照数据类型转换规则，将H转化为一个big endian的整数 e；<br>(3)计算u_1  = es^(-1)  mod n,u_2= rs^(-1)  mod n；<br>(4)计算  R = (x_R,y_R) = u_1 G + u_2 Q, 如果 R为零点，则验证该签名无效；<br>(5)令v = x_R  mod n；<br>(6)若v = r，则签名有效，若v ≠ r, 则签名无效。</p><h2 id="4-P2P网络"><a href="#4-P2P网络" class="headerlink" title="4. P2P网络"></a>4. P2P网络</h2><p>P2P(Peer-to-Peer)又称点对点技术，网络中的每个节点既是服务和内容等共享资源的提供者，又是服务和内容等共享资源的获取者。这些共享资源能被其他对等节点直接访问，而无须经过中间的服务器，是一个无中心服务器、依靠用户群交换信息的互联网体系。<br>在P2P网络环境中，彼此连接的计算机处于一个互相对等的地位，无关性能地理位置，各台计算机均有相同的功能，地位平等。每一个节点既可作为服务器，通过将其拥有的资源共享给网络中任意一台其他计算机；同时又可以作为工作站服务端，享受其他节点共享的资源。整个P2P网络呈现分布式结构，不依赖专用中心服务器，如图2.5所示，也没有专用的工作站。网络中各个节点互相连接，共同维护网络，每一台计算机在发出网络服务请求的同时，也可以进行对其它节点请求的响应。P2P网络节点通常需要提供资源、服务和内容，包括：数据的共享和交换、CPU计算能力等计算资源的共享、缓存和磁盘空间存储的共享，以及网络资源共享、硬件设备共享等。<br><img src="https://img-blog.csdnimg.cn/20210106100906393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p><h2 id="5-共识机制"><a href="#5-共识机制" class="headerlink" title="5. 共识机制"></a>5. 共识机制</h2><p>在联盟链中，联盟各个节点往往来自同一行业，有着共同的行业困扰和痛点，因此联盟链往往注重对实际问题的高效解决。在公链中很小适用的PBFT算法很适合联盟链。PBFT（Practical Byzantine Fault Tolerance)，实用拜占庭容错算法，由卡斯特罗和利斯科夫在1999年提出。PBFT实现流程总分为五个阶段，如图所示，执行前在全网选举出一个主节点，新区块的生成主要由主节点完成，五个阶段分别是：Request阶段、Preprepare阶段、Prepare阶段、Commit阶段、Reply阶段。每个阶段的具体过程如下：<br>Request阶段：<br>客户端发起请求，向网络中发送数据包。<br>Pre-prepare阶段：<br>主节点收到数据包请求后确认请求编号，并向其他节点发送pre-pre消息。<br>Prepare阶段:<br>节点收到包含pre-pre数据头的消息，验证通过后广播prepare类型消息。<br>Commit阶段 :<br>节点如果收到大于2f+1（f为可以容忍的恶意节点数）条验证通过prepare类型消息，则发送commit类型消息给其他节点。<br>Reply阶段：<br>节点如果收到大于2f+1条验证通过的commit类型消息，则执行区块生成并reply生成结果。<br><img src="https://img-blog.csdnimg.cn/20210106101110190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >以上就是系统所涉及的相关基础知识，有很多不充分的地方，仅作参考使用。<br><br><a href="https://blog.csdn.net/weixin_42277902/article/details/112252669">第1章 对研究背景及内容进行介绍</a><br><a href="https://blog.csdn.net/weixin_42277902/article/details/112252669">第2章 智能合约、密码学知识、共识机制等相关技术</a><br>第3章 系统的整体设计<br>第4章 系统功能的具体实现<br>第5章 系统的实验测试</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;基于区块链的防护物资捐赠监管系统-一-：项目简介&quot;&gt;&lt;a href=&quot;#基于区块链的防护物资捐赠监管系统-一-：项目简介&quot; class=&quot;headerlink&quot; title=&quot;基于区块链的防护物资捐赠监管系统(一)：项目简介&quot;&gt;&lt;/a&gt;基于区块链的防护物资捐赠监管</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
@@ -33,27 +66,6 @@
     
     
     
-    
-  </entry>
-  
-  <entry>
-    <title>my new post</title>
-    <link href="https://mospher.github.io/2016/02/21/my-new-post/"/>
-    <id>https://mospher.github.io/2016/02/21/my-new-post/</id>
-    <published>2016-02-21T08:04:09.000Z</published>
-    <updated>2021-01-04T13:01:52.397Z</updated>
-    
-    <content type="html"><![CDATA[<p>#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上</p><a id="more"></a>，在<!--more-->之前的内容会显示在首页，之后的内容会被隐藏，当游客点击Read more才能看到。]]></content>
-    
-    
-    <summary type="html">&lt;p&gt;#这里是正文，用markdown写，你可以选择写一段显示在首页的简介后，加上&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="blog" scheme="https://mospher.github.io/categories/blog/"/>
-    
-    
-    <category term="文章" scheme="https://mospher.github.io/tags/%E6%96%87%E7%AB%A0/"/>
     
   </entry>
   

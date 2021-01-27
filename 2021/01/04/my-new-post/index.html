@@ -1,0 +1,476 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>嘟嘟独立博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Tengj Jun">
+    
+
+    
+    <meta name="description" content="基于区块链的防护物资捐赠监管系统(一)：项目简介第1章 对研究背景及内容进行介绍第2章 智能合约、密码学知识、共识机制等相关技术第3章 系统的整体设计第4章 系统功能的具体实现第5章 系统的实验测试   前言    着互联网的发展，慈善与网络的结合为慈善事业的发展提供了一条崭新的道路，伴随着参与慈善方式更加便利发生的，是网络募捐监管的滞后，本项目基于区块链技术设计实现了一种去中心化的防护物资流通监">
+<meta property="og:type" content="article">
+<meta property="og:title" content="嘟嘟独立博客">
+<meta property="og:url" content="https://mospher.github.io/2021/01/04/my-new-post/index.html">
+<meta property="og:site_name" content="嘟嘟独立博客">
+<meta property="og:description" content="基于区块链的防护物资捐赠监管系统(一)：项目简介第1章 对研究背景及内容进行介绍第2章 智能合约、密码学知识、共识机制等相关技术第3章 系统的整体设计第4章 系统功能的具体实现第5章 系统的实验测试   前言    着互联网的发展，慈善与网络的结合为慈善事业的发展提供了一条崭新的道路，伴随着参与慈善方式更加便利发生的，是网络募捐监管的滞后，本项目基于区块链技术设计实现了一种去中心化的防护物资流通监">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210106095507644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210106100227194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210106100518650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210106100906393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210106101110190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-01-04T13:00:55.901Z">
+<meta property="article:modified_time" content="2021-01-27T09:42:23.224Z">
+<meta property="article:author" content="Tengj Jun">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210106095507644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70">
+
+    
+    <link rel="alternative" href="/atom.xml" title="嘟嘟独立博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="嘟嘟独立博客" title="嘟嘟独立博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="嘟嘟独立博客">嘟嘟独立博客</a></h1>
+				<h2 class="blog-motto">爱生活爱编码</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:mospher.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/01/04/my-new-post/" title="" itemprop="url"></a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Tengj Jun" target="_blank" itemprop="author">Tengj Jun</a>
+		
+  <p class="article-time">
+    <time datetime="2021-01-04T13:00:55.901Z" itemprop="datePublished"> 发表于 2021-01-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E9%98%B2%E6%8A%A4%E7%89%A9%E8%B5%84%E6%8D%90%E8%B5%A0%E7%9B%91%E7%AE%A1%E7%B3%BB%E7%BB%9F-%E4%B8%80-%EF%BC%9A%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">基于区块链的防护物资捐赠监管系统(一)：项目简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">一、项目环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">4.</span> <span class="toc-text">二、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8C%BA%E5%9D%97%E9%93%BE%E6%9E%B6%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">1.区块链架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text">2.智能合约模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9B%B8%E5%85%B3%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9F%A5%E8%AF%86"><span class="toc-number">4.3.</span> <span class="toc-text">3.相关密码学知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 哈希函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Merkle-Tree"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2 Merkle Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-DH%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3 DH密钥交换算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.4 椭圆曲线数字签名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-P2P%E7%BD%91%E7%BB%9C"><span class="toc-number">4.4.</span> <span class="toc-text">4. P2P网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.5.</span> <span class="toc-text">5. 共识机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<h1 id="基于区块链的防护物资捐赠监管系统-一-：项目简介"><a href="#基于区块链的防护物资捐赠监管系统-一-：项目简介" class="headerlink" title="基于区块链的防护物资捐赠监管系统(一)：项目简介"></a>基于区块链的防护物资捐赠监管系统(一)：项目简介</h1><p><font color=#999AAA >第1章 对研究背景及内容进行介绍<br>第2章 智能合约、密码学知识、共识机制等相关技术<br>第3章 系统的整体设计<br>第4章 系统功能的具体实现<br>第5章 系统的实验测试</p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+
+
+
+<p>@<a href="%E7%9B%AE%E5%BD%95">TOC</a></p>
+</font>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><font color=#999AAA >    着互联网的发展，慈善与网络的结合为慈善事业的发展提供了一条崭新的道路，伴随着参与慈善方式更加便利发生的，是网络募捐监管的滞后，本项目基于区块链技术设计实现了一种去中心化的防护物资流通监管平台，还望各位大佬指正</font></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+
+
+<h1 id="一、项目环境"><a href="#一、项目环境" class="headerlink" title="一、项目环境"></a>一、项目环境</h1><p>使用工具：IDEA2019.3.3 ，Android Studio<br>推荐工具：Notepad++，Sublime <font color=#999AAA >  轻量级编辑器阅读代码很方便   </font><br>语言：Java</p>
+<h1 id="二、相关知识"><a href="#二、相关知识" class="headerlink" title="二、相关知识"></a>二、相关知识</h1><h2 id="1-区块链架构"><a href="#1-区块链架构" class="headerlink" title="1.区块链架构"></a>1.区块链架构</h2><p><img src="https://img-blog.csdnimg.cn/20210106095507644.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-智能合约模型"><a href="#2-智能合约模型" class="headerlink" title="2.智能合约模型"></a>2.智能合约模型</h2><p>![在这里插入图片描述](<a target="_blank" rel="noopener" href="https://img-blog.csdnimg.cn/2021010609530081.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_20,color_FFFFFF,t_70">https://img-blog.csdnimg.cn/2021010609530081.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_20,color_FFFFFF,t_70</a>, =450x250)</p>
+<h2 id="3-相关密码学知识"><a href="#3-相关密码学知识" class="headerlink" title="3.相关密码学知识"></a>3.相关密码学知识</h2><h3 id="3-1-哈希函数"><a href="#3-1-哈希函数" class="headerlink" title="3.1 哈希函数"></a>3.1 哈希函数</h3><p>密码学的基本工具，Hash函数，它通过散列算法能够将任意长的一段数据通过映射，调整为固定长度的数据摘要并输出。通过压缩的形式，更高效利用存储空间。并且Hash函数还具有单向算法的特性，1bit的数据不同都会影响最终的Hash值，因此常用作完整性校验。目前常用的Hash函数主要有6种，MD5、SHA-A、SHA-2、SHA-3、Whirlpool、SHA-3、SM3。</p>
+<h3 id="3-2-Merkle-Tree"><a href="#3-2-Merkle-Tree" class="headerlink" title="3.2 Merkle Tree"></a>3.2 Merkle Tree</h3><p>梅克尔树又称哈希树，Merkle Tree包含在区块链的每一个区块。树的每一个叶子节点如图2.3所示，均为对应数据块计算所得的哈希值，相邻的两片叶子节点将其中包含的字符串进行串联，并参与一次哈希计算，从而成为上层节点的内容，以此类推并最终得到顶层哈希值。这为区块链技术中区块数据存储校验提供了一种简单可靠的高效途径。</p>
+<p><img src="https://img-blog.csdnimg.cn/20210106100227194.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p>
+<h3 id="3-3-DH密钥交换算法"><a href="#3-3-DH密钥交换算法" class="headerlink" title="3.3 DH密钥交换算法"></a>3.3 DH密钥交换算法</h3><p>Diffie-Hellman算法，于1976年由Diffie和Hellman共同发明，算法目的在于消息通信的收发双方通过可公开信息的交换，在保证安全传输的前提下，交换对称密钥生成可共享的加密数据。算法的核心在于避免双方私钥进入网络传输流程，以消息传递模型为例，密钥交换算法模型如图所示，本文利用AES+RSA实现DH密钥交互算法，Alice作为信息发送者，Bob作为信息接受者。<br>首先，Alice构建密钥对，保留私钥并将公钥信息公布给Bob，将私钥信息保留；双方约定数据加密算法，Bob通过Alice公钥构建密钥对，将公钥信息公布给Alice，将私钥信息保留。<br>Alice使用自己保留的私钥以及Bob公钥，双方约定数据加密算法并构建本地密钥，然后通过本地密钥加密数据，Alice发送给Bob加密后的数据；Bob使用私钥及Alice公开的公钥、双方约定的数据加密算法构建本地密钥，并最后通过本地密钥对数据解密。<br>Bob使用自己保留的私钥及Alice公钥、双方约定的数据加密算法构建本地密钥，然后通过本地密钥加密数据，将加密后的数据发送给Alice ；Alice使用其保留的私钥、Bob的公钥、以及双方约定的数据加密算法构建本地密钥，然后通过本地密钥对数据解密。<br><img src="https://img-blog.csdnimg.cn/20210106100518650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p>
+<h3 id="3-4-椭圆曲线数字签名"><a href="#3-4-椭圆曲线数字签名" class="headerlink" title="3.4 椭圆曲线数字签名"></a>3.4 椭圆曲线数字签名</h3><p>数字签名基于非对称加密，主要用于证实数字内容具有完整性，同时可以保证确认来源，本文使用了椭圆曲线数字签名算法用于认证区块信息所有权。<br>用户的密钥对：(d,Q); (d 为私钥，Q 为公钥)<br>待签名的信息：M<br>签名：Signature(M) = ( r,s)<br>签名过程：<br>(1)根据 ECC 算法随机生成一个密钥对(k,R),R=(xR,yR)<br>(2)令 r= xR mod n，如果r = 0，则返回步骤 1；<br>(3)计算 H = Hash(M)；<br>(4)按照数据类型转换规则，将H转化为一个 big endian 的整数 e；<br>(5)s =k^(-1)  (e + rd) mod n，若 s = 0，则返回步骤 1；<br>(6)输出的 S =(r,s)即为签名。<br>验证过程：<br>(1)计算 H = Hash(M)；<br>(2)按照数据类型转换规则，将H转化为一个big endian的整数 e；<br>(3)计算u_1  = es^(-1)  mod n,u_2= rs^(-1)  mod n；<br>(4)计算  R = (x_R,y_R) = u_1 G + u_2 Q, 如果 R为零点，则验证该签名无效；<br>(5)令v = x_R  mod n；<br>(6)若v = r，则签名有效，若v ≠ r, 则签名无效。</p>
+<h2 id="4-P2P网络"><a href="#4-P2P网络" class="headerlink" title="4. P2P网络"></a>4. P2P网络</h2><p>P2P(Peer-to-Peer)又称点对点技术，网络中的每个节点既是服务和内容等共享资源的提供者，又是服务和内容等共享资源的获取者。这些共享资源能被其他对等节点直接访问，而无须经过中间的服务器，是一个无中心服务器、依靠用户群交换信息的互联网体系。<br>在P2P网络环境中，彼此连接的计算机处于一个互相对等的地位，无关性能地理位置，各台计算机均有相同的功能，地位平等。每一个节点既可作为服务器，通过将其拥有的资源共享给网络中任意一台其他计算机；同时又可以作为工作站服务端，享受其他节点共享的资源。整个P2P网络呈现分布式结构，不依赖专用中心服务器，如图2.5所示，也没有专用的工作站。网络中各个节点互相连接，共同维护网络，每一台计算机在发出网络服务请求的同时，也可以进行对其它节点请求的响应。P2P网络节点通常需要提供资源、服务和内容，包括：数据的共享和交换、CPU计算能力等计算资源的共享、缓存和磁盘空间存储的共享，以及网络资源共享、硬件设备共享等。<br><img src="https://img-blog.csdnimg.cn/20210106100906393.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70,=500x350" alt="在这里插入图片描述"></p>
+<h2 id="5-共识机制"><a href="#5-共识机制" class="headerlink" title="5. 共识机制"></a>5. 共识机制</h2><p>在联盟链中，联盟各个节点往往来自同一行业，有着共同的行业困扰和痛点，因此联盟链往往注重对实际问题的高效解决。在公链中很小适用的PBFT算法很适合联盟链。PBFT（Practical Byzantine Fault Tolerance)，实用拜占庭容错算法，由卡斯特罗和利斯科夫在1999年提出。PBFT实现流程总分为五个阶段，如图所示，执行前在全网选举出一个主节点，新区块的生成主要由主节点完成，五个阶段分别是：Request阶段、Preprepare阶段、Prepare阶段、Commit阶段、Reply阶段。每个阶段的具体过程如下：<br>Request阶段：<br>客户端发起请求，向网络中发送数据包。<br>Pre-prepare阶段：<br>主节点收到数据包请求后确认请求编号，并向其他节点发送pre-pre消息。<br>Prepare阶段:<br>节点收到包含pre-pre数据头的消息，验证通过后广播prepare类型消息。<br>Commit阶段 :<br>节点如果收到大于2f+1（f为可以容忍的恶意节点数）条验证通过prepare类型消息，则发送commit类型消息给其他节点。<br>Reply阶段：<br>节点如果收到大于2f+1条验证通过的commit类型消息，则执行区块生成并reply生成结果。<br><img src="https://img-blog.csdnimg.cn/20210106101110190.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjI3NzkwMg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><font color=#999AAA >以上就是系统所涉及的相关基础知识，有很多不充分的地方，仅作参考使用。<br><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42277902/article/details/112252669">第1章 对研究背景及内容进行介绍</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42277902/article/details/112252669">第2章 智能合约、密码学知识、共识机制等相关技术</a><br>第3章 系统的整体设计<br>第4章 系统功能的具体实现<br>第5章 系统的实验测试</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://mospher.github.io/2021/01/04/my-new-post/" data-title="嘟嘟独立博客" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2021/01/05/january-1-5/" title="january-1-5">
+  <strong>上一篇：</strong><br/>
+  <span>
+  january-1-5</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2021/01/04/hello-world/"  title="Hello World">
+ <strong>下一篇：</strong><br/> 
+ <span>Hello World
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+
+
+
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E9%98%B2%E6%8A%A4%E7%89%A9%E8%B5%84%E6%8D%90%E8%B5%A0%E7%9B%91%E7%AE%A1%E7%B3%BB%E7%BB%9F-%E4%B8%80-%EF%BC%9A%E9%A1%B9%E7%9B%AE%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">基于区块链的防护物资捐赠监管系统(一)：项目简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">2.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E7%8E%AF%E5%A2%83"><span class="toc-number">3.</span> <span class="toc-text">一、项目环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">4.</span> <span class="toc-text">二、相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8C%BA%E5%9D%97%E9%93%BE%E6%9E%B6%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">1.区块链架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text">2.智能合约模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9B%B8%E5%85%B3%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9F%A5%E8%AF%86"><span class="toc-number">4.3.</span> <span class="toc-text">3.相关密码学知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 哈希函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Merkle-Tree"><span class="toc-number">4.3.2.</span> <span class="toc-text">3.2 Merkle Tree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-DH%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.3 DH密钥交换算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E6%A4%AD%E5%9C%86%E6%9B%B2%E7%BA%BF%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">4.3.4.</span> <span class="toc-text">3.4 椭圆曲线数字签名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-P2P%E7%BD%91%E7%BB%9C"><span class="toc-number">4.4.</span> <span class="toc-text">4. P2P网络</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%B1%E8%AF%86%E6%9C%BA%E5%88%B6"><span class="toc-number">4.5.</span> <span class="toc-text">5. 共识机制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="tengj" data-theme="medium"></div>
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+
+
+
+  
+
+  
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle"><a href="/archives">归档</a></p>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a><span class="archive-list-count">3</span></li></ul>
+  </div>
+
+
+  
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 程序员上辈子都是折翼的天使 <br/>
+			This is my blog,Try to do better.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/tengj" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="Tengj Jun">Tengj Jun</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
